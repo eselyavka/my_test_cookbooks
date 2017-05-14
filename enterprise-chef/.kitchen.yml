@@ -1,0 +1,29 @@
+---
+driver:
+  name: ec2
+  aws_ssh_key_id: evgenii_test_key_pair
+  region: us-west-2
+  availability_zone: us-west-2a
+  require_chef_omnibus: true
+  instance_type: t2.micro
+  security_group_ids: sg-5ca30827
+  subnet_id: subnet-b1a1dad6
+  associate_public_ip: true
+  interface: public
+
+provisioner:
+  name: chef_solo
+
+platforms:
+  - name: centos-6
+    driver:
+      image_id: ami-05cf2265
+    transport:
+      username: centos
+      ssh_key: /home/eseliavka/aws/evgenii_test_key_pair.pem
+
+suites:
+  - name: default
+    run_list:
+      - recipe[enterprise-chef::default]
+    attributes:
