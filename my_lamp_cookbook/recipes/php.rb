@@ -1,6 +1,6 @@
 #
 # Cookbook:: my_lamp_cookbook
-# Recipe:: web
+# Recipe:: php
 #
 # Copyright:: 2017, The Authors, All Rights Reserved.
 

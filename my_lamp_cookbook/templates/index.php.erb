@@ -1,25 +1,12 @@
 <?php
-$dbconn = pg_connect("host=localhost dbname=publishing user=www password=foo")
+$dbconn = pg_connect("host=localhost dbname=<%= node['lamp']['db']['name']%> user=<%= node['lamp']['db']['user']%> password=<%= node['lamp']['db']['password']%>")
     or die('Could not connect: ' . pg_last_error());
 
-// Performing SQL query
-$query = 'SELECT * FROM authors';
+$query = "CREATE TABLE IF NOT EXISTS requests(ip INET PRIMARY KEY, time_received timestamp default now(), count bigint default 0);
+          INSERT INTO requests(ip) VALUES ('".$_SERVER['REMOTE_ADDR']."'::inet) ON CONFLICT ON CONSTRAINT requests_pkey DO UPDATE SET count=(SELECT count+1 FROM requests WHERE ip=EXCLUDED.ip);";
+
 $result = pg_query($query) or die('Query failed: ' . pg_last_error());
 
-// Printing results in HTML
-echo "<table>\n";
-while ($line = pg_fetch_array($result, null, PGSQL_ASSOC)) {
-    echo "\t<tr>\n";
-    foreach ($line as $col_value) {
-        echo "\t\t<td>$col_value</td>\n";
-    }
-    echo "\t</tr>\n";
-}
-echo "</table>\n";
-
-// Free resultset
-pg_free_result($result);
-
-// Closing connection
 pg_close($dbconn);
+echo 'ip saved';
 ?>

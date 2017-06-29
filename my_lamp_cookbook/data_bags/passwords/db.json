@@ -1,0 +1,15 @@
+{
+  "id": "db",
+  "web": {
+    "encrypted_data": "0nHeR3j+ZLCTyNNqdgJrKaVgxut1NVQ9nimtyTAqdTY=\n",
+    "iv": "kblGVCzZ0B1T3n56SIuUzQ==\n",
+    "version": 1,
+    "cipher": "aes-256-cbc"
+  },
+  "postgres": {
+    "encrypted_data": "ZQfQkUin047nEuWHMY8grksIwzfMf/UWb3yswlotxpM=\n",
+    "iv": "5hDdO8MQKApu6kKSLQn+7w==\n",
+    "version": 1,
+    "cipher": "aes-256-cbc"
+  }
+}

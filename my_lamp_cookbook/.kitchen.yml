@@ -36,6 +36,4 @@ suites:
       - recipe[my_lamp_cookbook::web]
       - recipe[database::postgresql]
       - recipe[my_lamp_cookbook::db]
-    verifier:
-      inspec_tests:
-        - test/smoke/default
+      - recipe[my_lamp_cookbook::app]
