@@ -1,4 +1,4 @@
-default['lamp']['web']['document_root'] = '/var/www/default/public_html'
+default['lapp']['web']['document_root'] = '/var/www/default/public_html'
 
 default['postgresql']['enable_pgdg_apt'] = true
 default['postgresql']['version'] = "9.5"
@@ -10,10 +10,10 @@ default['postgresql']['contrib']['packages'] = ["postgresql-contrib-9.5"]
 default['postgresql']['password']['postgres'] = 'secret'
 
 
-default['lamp']['db']['name'] = 'requests'
-default['lamp']['db']['user'] = 'web'
-default['lamp']['db']['password'] = 'secret'
+default['lapp']['db']['name'] = 'requests'
+default['lapp']['db']['user'] = 'web'
+default['lapp']['db']['password'] = 'secret'
 default['tz'] = 'Europe/Moscow'
-default['lamp']['db']['database'] = 'requests'
-default['lamp']['chef_etc_dir'] = '/etc/chef'
-default['lamp']['secret_key_name'] = 'secret.key'
+default['lapp']['db']['database'] = 'requests'
+default['lapp']['chef_etc_dir'] = '/etc/chef'
+default['lapp']['secret_key_name'] = 'secret.key'

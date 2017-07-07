@@ -1,23 +1,23 @@
 # # encoding: utf-8
 
-# Inspec test for recipe my_lamp_cookbook::web
+# Inspec test for recipe lapp_cookbook::db
 
 # The Inspec reference, with examples and extensive documentation, can be
 # found at http://inspec.io/docs/reference/resources/
 
-describe package 'apache2' do
+describe package 'postgresql-9.5' do
   it { should be_installed }
 end
 
-describe service 'apache2-default' do
+describe service 'postgresql' do
   it { should be_enabled }
   it { should be_running }
 end
 
-describe command "curl -o/dev/null -s -L -m 120 -X GET -w '%{http_code}' http://localhost" do
-  its(:stdout) { should eq '200' }
+describe command "sudo -u postgres psql -Upostgres -qAt -c 'SELECT 1' template1" do
+  its(:stdout) { should match /1/ }
 end
 
-describe port 80 do
+describe port 5432 do
   it { should be_listening }
 end

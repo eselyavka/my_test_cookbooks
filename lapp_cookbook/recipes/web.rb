@@ -1,10 +1,10 @@
 #
-# Cookbook:: my_lamp_cookbook
+# Cookbook:: lapp_cookbook
 # Recipe:: web
 #
 # Copyright:: 2017, The Authors, All Rights Reserved.
 
-directory node['lamp']['web']['document_root'] do
+directory node['lapp']['web']['document_root'] do
   recursive true
 end
 

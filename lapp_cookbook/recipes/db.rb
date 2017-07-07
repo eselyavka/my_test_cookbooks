@@ -1,5 +1,5 @@
 #
-# Cookbook:: my_lamp_cookbook
+# Cookbook:: lapp_cookbook
 # Recipe:: db
 #
 # Copyright:: 2017, The Authors, All Rights Reserved.
@@ -11,7 +11,7 @@ postgresql_connection_info = {
   :password => node['postgresql']['password']['postgres']
 }
 
-postgresql_database node['lamp']['db']['name'] do
+postgresql_database node['lapp']['db']['name'] do
   connection(
     :host      => '127.0.0.1',
     :port      => 5432,
@@ -21,10 +21,10 @@ postgresql_database node['lamp']['db']['name'] do
   action :create
 end
 
-postgresql_database_user node['lamp']['db']['user'] do
+postgresql_database_user node['lapp']['db']['user'] do
   connection postgresql_connection_info
-  password node['lamp']['db']['password']
-  database_name node['lamp']['db']['database']
+  password node['lapp']['db']['password']
+  database_name node['lapp']['db']['database']
   schema_name 'public'
   tables [:all]
   sequences [:all]

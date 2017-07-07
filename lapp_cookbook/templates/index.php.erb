@@ -1,5 +1,5 @@
 <?php
-$dbconn = pg_connect("host=localhost dbname=<%= node['lamp']['db']['name']%> user=<%= node['lamp']['db']['user']%> password=<%= node['lamp']['db']['password']%>")
+$dbconn = pg_connect("host=localhost dbname=<%= node['lapp']['db']['name']%> user=<%= node['lapp']['db']['user']%> password=<%= node['lapp']['db']['password']%>")
     or die('Could not connect: ' . pg_last_error());
 
 $query = "CREATE TABLE IF NOT EXISTS requests(ip INET PRIMARY KEY, time_received timestamp default now(), count bigint default 0);

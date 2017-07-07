@@ -1,4 +1,4 @@
-# my_lamp_cookbook
+#lapp_cookbook
 
 TODO: Enter the cookbook description here.
 

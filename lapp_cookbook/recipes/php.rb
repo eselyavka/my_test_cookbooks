@@ -1,5 +1,5 @@
 #
-# Cookbook:: my_lamp_cookbook
+# Cookbook:: lapp_cookbook
 # Recipe:: php
 #
 # Copyright:: 2017, The Authors, All Rights Reserved.
