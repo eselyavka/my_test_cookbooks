@@ -24,9 +24,9 @@ platforms:
 suites:
   - name: default
     run_list:
-      - recipe[test-cookbook::hello]
-      - recipe[test-cookbook::nginx]
-      - recipe[test-cookbook::redis]
+      - recipe[nginx_redis_cookbook::hello]
+      - recipe[nginx_redis_cookbook::nginx]
+      - recipe[nginx_redis_cookbook::redis]
       - recipe[timezone::default]
       - recipe[ntp::default]
     attributes:
