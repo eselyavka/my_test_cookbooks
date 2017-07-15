@@ -1,4 +1,4 @@
-# my_openvpn
+# openvpn
 
 TODO: Enter the cookbook description here.
 

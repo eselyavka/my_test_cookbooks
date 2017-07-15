@@ -1,5 +1,5 @@
 #
-# Cookbook:: my_openvpn
+# Cookbook:: openvpn
 # Recipe:: default
 #
 # Copyright:: 2017, The Authors, All Rights Reserved.

@@ -24,9 +24,10 @@ platforms:
 suites:
   - name: default
     run_list:
+      - recipe[openvpn::default]
       - recipe[timezone::default]
       - recipe[ntp::default]
-      - recipe[my_openvpn::openvpn]
+      - recipe[openvpn::openvpn]
     attributes:
       tz: Europe/Moscow
       key_country: RU

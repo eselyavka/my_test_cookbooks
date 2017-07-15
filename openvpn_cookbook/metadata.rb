@@ -1,9 +1,9 @@
-name 'my_openvpn'
+name 'openvpn'
 maintainer 'Evgenii Seliavka'
-maintainer_email 'test@example.com'
+maintainer_email 'evg.selyavka at gmail.com'
 license 'All Rights Reserved'
-description 'Installs/Configures my_openvpn'
-long_description 'Installs/Configures my_openvpn'
+description 'Installs/Configures openvpn'
+long_description 'Installs/Configures openvpn'
 version '0.1.0'
 chef_version '>= 12.1' if respond_to?(:chef_version)
 
