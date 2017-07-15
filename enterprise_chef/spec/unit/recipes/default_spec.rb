@@ -1,12 +1,12 @@
 #
-# Cookbook:: enterprise-chef
+# Cookbook:: enterprise_chef
 # Spec:: default
 #
 # Copyright:: 2017, The Authors, All Rights Reserved.
 
 require 'spec_helper'
 
-describe 'enterprise-chef::default' do
+describe 'enterprise_chef::default' do
   context 'When all attributes are default, on an Ubuntu 16.04' do
     let(:chef_run) do
       # for a complete list of available platforms and versions see:

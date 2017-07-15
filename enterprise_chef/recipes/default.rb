@@ -1,5 +1,5 @@
 #
-# Cookbook:: enterprise-chef
+# Cookbook:: enterprise_chef
 # Recipe:: default
 #
 # Copyright:: 2017, The Authors, All Rights Reserved.
@@ -14,9 +14,9 @@ reboot 'selinux_requires_reboot' do
   action :nothing
 end
 
-package_url = node['enterprise-chef']['url']
+package_url = node['enterprise_chef']['url']
 package_name = ::File.basename(package_url)
-package_checksum = node['enterprise-chef']['checksum']
+package_checksum = node['enterprise_chef']['checksum']
 package_local_path = "#{Chef::Config[:file_cache_path]}/#{package_name}"
 
 remote_file package_local_path do

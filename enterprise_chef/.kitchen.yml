@@ -25,5 +25,5 @@ platforms:
 suites:
   - name: default
     run_list:
-      - recipe[enterprise-chef::default]
+      - recipe[enterprise_chef::default]
     attributes:
