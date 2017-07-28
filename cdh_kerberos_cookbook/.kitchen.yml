@@ -1,0 +1,39 @@
+---
+driver:
+  name: ec2
+  aws_ssh_key_id: evgenii_test_key_pair
+  region: us-west-2
+  availability_zone: us-west-2a
+  require_chef_omnibus: true
+  instance_type: t2.micro
+  security_group_ids: sg-5ca30827
+  subnet_id: subnet-b1a1dad6
+  associate_public_ip: true
+  interface: public
+
+provisioner:
+  name: chef_solo
+
+platforms:
+  - name: ubuntu-16.04
+    driver:
+      image_id: ami-835b4efa
+    transport:
+      username: ubuntu
+      ssh_key: /home/eseliavka/aws/evgenii_test_key_pair.pem
+
+verifier:
+  name: inspec
+
+suites:
+  - name: default
+    run_list:
+      - recipe[cdh_kerberos_cookbook::default]
+      - recipe[timezone::default]
+      - recipe[ntp::default]
+      - recipe[cdh_kerberos_cookbook::java]
+      - recipe[cdh_kerberos_cookbook::cdh-pseudo]
+      - recipe[cdh_kerberos_cookbook::kerberos]
+    verifier:
+      inspec_tests:
+        - test/smoke/default
