@@ -1,0 +1,5 @@
+default['system']['timezone'] = 'Europe/Moscow'
+default['kafka_cookbook']['java']['repo'] = 'ppa:webupd8team/java'
+default['kafka_cookbook']['java']['installer'] = 'oracle-java8-installer'
+default['kafka_cookbook']['url'] = 'http://mirrors.koehn.com/apache/kafka/0.11.0.0/kafka_2.11-0.11.0.0.tgz'
+default['kafka_cookbook']['link'] = '/opt/kafka'

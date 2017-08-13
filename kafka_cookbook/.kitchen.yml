@@ -28,13 +28,12 @@ verifier:
 suites:
   - name: default
     run_list:
-      - recipe[cdh_kerberos_cookbook::default]
-      - recipe[timezone::default]
+      - recipe[kafka_cookbook::default]
+      - recipe[system::default]
       - recipe[ntp::default]
-      - recipe[cdh_kerberos_cookbook::java]
-      - recipe[cdh_kerberos_cookbook::cdh-pseudo]
-      - recipe[cdh_kerberos_cookbook::kerberos]
-      - recipe[cdh_kerberos_cookbook::cdh-kerberos]
+      - recipe[kafka_cookbook::java]
+      - recipe[kafka_cookbook::zookeeper]
+      - recipe[kafka_cookbook::kafka]
     verifier:
       inspec_tests:
         - test/smoke/default
