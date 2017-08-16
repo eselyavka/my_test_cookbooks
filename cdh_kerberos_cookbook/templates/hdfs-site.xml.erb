@@ -106,14 +106,6 @@
   <value>700</value> 
 </property>
 <property>
-  <name>dfs.datanode.address</name>
-  <value>0.0.0.0:1004</value>
-</property>
-<property>
-  <name>dfs.datanode.http.address</name>
-  <value>0.0.0.0:1006</value>
-</property>
-<property>
   <name>dfs.datanode.keytab.file</name>
   <value>/etc/hadoop/conf/hdfs.keytab</value> <!-- path to the HDFS keytab -->
 </property>
@@ -127,5 +119,21 @@
   <name>dfs.web.authentication.kerberos.principal</name>
   <value>HTTP/<%= node['cdh_kerberos_cookbook']['kerberos']['domain']%>@<%= node['cdh_kerberos_cookbook']['kerberos']['realm']%></value>
  </property>
+
+<property>
+  <name>dfs.encrypt.data.transfer</name>
+  <value>true</value>
+ </property>
+
+<property>
+  <name>dfs.data.transfer.protection</name>
+  <value>integrity</value>
+</property>
+ 
+<property>
+  <name>dfs.http.policy</name>
+  <value>HTTPS_ONLY</value>
+</property>
+
 
 </configuration>

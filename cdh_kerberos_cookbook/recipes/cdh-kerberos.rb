@@ -41,6 +41,35 @@ template '/etc/hadoop/conf/hdfs-site.xml' do
     mode '0644'
 end
 
+template '/etc/hadoop/conf/ssl-server.xml' do
+    source 'ssl-server.xml.erb'
+    owner 'root'
+    group 'hadoop'
+    mode '0644'
+end
+
+template '/etc/hadoop/conf/ssl-client.xml' do
+    source 'ssl-client.xml.erb'
+    owner 'root'
+    group 'hadoop'
+    mode '0644'
+end
+
+bash 'generate_certs' do
+    user 'root'
+    code <<-EOH
+    keytool -genkey -noprompt \
+            -alias #{node['cdh_kerberos_cookbook']['kerberos']['domain']} \
+            -dname "CN=#{node['cdh_kerberos_cookbook']['kerberos']['domain']}, OU=#{node['cdh_kerberos_cookbook']['tls']['crt']['ou']}, O=#{node['cdh_kerberos_cookbook']['tls']['crt']['o']}, L=#{node['cdh_kerberos_cookbook']['tls']['crt']['l']}, S=#{node['cdh_kerberos_cookbook']['tls']['crt']['s']}, C=#{node['cdh_kerberos_cookbook']['tls']['crt']['c']}" \
+            -keystore #{node['cdh_kerberos_cookbook']['tls']['keystore']['file']} \
+            -storepass #{node['cdh_kerberos_cookbook']['tls']['keystore']['passwd']} \
+            -keypass #{node['cdh_kerberos_cookbook']['tls']['keystore']['key']['passwd']} &&
+    keytool -exportcert -keystore #{node['cdh_kerberos_cookbook']['tls']['keystore']['file']} \
+            -alias #{node['cdh_kerberos_cookbook']['kerberos']['domain']} -storepass #{node['cdh_kerberos_cookbook']['tls']['keystore']['passwd']} | \
+    keytool -import -keystore #{node['cdh_kerberos_cookbook']['tls']['truststore']['file']} -alias #{node['cdh_kerberos_cookbook']['kerberos']['domain']} -noprompt -storepass #{node['cdh_kerberos_cookbook']['tls']['truststore']['passwd']}
+    EOH
+end
+
 bash 'format_nn' do
     user 'hdfs'
     code <<-EOH
@@ -55,13 +84,6 @@ end
 
 service 'hadoop-hdfs-secondarynamenode' do
   action :start
-end
-
-cookbook_file '/etc/default/hadoop-hdfs-datanode' do
-    source 'hadoop-hdfs-datanode'
-    mode '0644'
-    owner 'root'
-    group 'root'
 end
 
 service 'hadoop-hdfs-datanode' do

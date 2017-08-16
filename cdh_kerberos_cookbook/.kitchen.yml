@@ -29,7 +29,7 @@ suites:
   - name: default
     run_list:
       - recipe[cdh_kerberos_cookbook::default]
-      - recipe[timezone::default]
+      - recipe[system::default]
       - recipe[ntp::default]
       - recipe[cdh_kerberos_cookbook::java]
       - recipe[cdh_kerberos_cookbook::cdh-pseudo]
