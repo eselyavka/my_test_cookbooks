@@ -112,7 +112,7 @@ end
 bash 'kinit' do
     user 'hdfs'
     code <<-EOH
-    kinit -k -t /etc/hadoop/conf/hdfs.keytab hdfs/#{node['cdh_kerberos_cookbook']['kerberos']['domain']}@#{node['cdh_kerberos_cookbook']['kerberos']['realm']} && hdfs dfs -mkdir -p /user/hdfs /user/#{user_ubuntu}
+    kinit -k -t /etc/hadoop/conf/hdfs.keytab hdfs/#{node['cdh_kerberos_cookbook']['kerberos']['domain']}@#{node['cdh_kerberos_cookbook']['kerberos']['realm']} && hdfs dfs -mkdir -p /user/hdfs /user/#{user_ubuntu} && hdfs dfs -chown #{user_ubuntu}:#{user_ubuntu} /user/#{user_ubuntu}
     EOH
 end
 
@@ -129,4 +129,34 @@ bash 'init_hdfs' do
     /usr/lib/hadoop/libexec/init-hdfs.sh
     EOH
     not_if 'su -s /bin/bash hdfs -c "/usr/bin/hadoop fs -test -e /tmp"'
+end
+
+template '/etc/hadoop/conf/yarn-site.xml' do
+    source 'yarn-site.xml.erb'
+    owner 'root'
+    group 'hadoop'
+    mode '0644'
+end
+
+template '/etc/hadoop/conf/mapred-site.xml' do
+    source 'mapred-site.xml.erb'
+    owner 'root'
+    group 'hadoop'
+    mode '0644'
+end
+
+cookbook_file '/etc/hadoop/conf/container-executor.cfg' do
+    source 'container-executor.cfg'
+    mode '0644'
+    owner 'root'
+    group 'hadoop'
+    action :create
+end
+
+service 'hadoop-yarn-resourcemanager' do
+  action :start
+end
+
+service 'hadoop-yarn-nodemanager' do
+  action :start
 end
